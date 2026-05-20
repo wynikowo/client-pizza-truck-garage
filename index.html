@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>Pizza Truck Garage — Prawdziwa pizza neapolitańska · Piotrkowska 217, Łódź</title>
+  <meta name="description" content="Pizza Truck Garage — kultowa łódzka pizzeria przy Piotrkowskiej 217. Pizza neapolitańska z pieca opalanego drewnem, rockowy klimat, kraftowe piwo." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Anton', 'Impact', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono:    ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            ink: {
+              950: '#050505',
+              900: '#0A0A0A',
+              850: '#101010',
+              800: '#161616',
+              700: '#1F1F1F',
+              600: '#2A2A2A',
+              500: '#3D3D3D',
+              400: '#5C5C5C',
+              300: '#8A8A8A',
+              200: '#B5B5B5',
+            },
+            blood: {
+              400: '#F43F5E',
+              500: '#E11D48',
+              600: '#BE123C',
+              700: '#9F1239',
+            },
+            hazard: {
+              400: '#FB923C',
+              500: '#F97316',
+              600: '#EA580C',
+            },
+            bone: '#F5F5F1',
+          },
+          boxShadow: {
+            neon:     '0 0 0 1px rgba(225,29,72,0.4), 0 10px 40px -10px rgba(225,29,72,0.45)',
+            neonHot:  '0 0 0 1px rgba(249,115,22,0.5), 0 18px 50px -12px rgba(249,115,22,0.55)',
+            plate:    '0 2px 0 0 rgba(255,255,255,0.04) inset, 0 30px 60px -20px rgba(0,0,0,0.8)',
+          },
+          keyframes: {
+            flicker: {
+              '0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%': { opacity: '1' },
+              '20%, 24%, 55%': { opacity: '0.55' },
+            },
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(14px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            scrollX: {
+              '0%':   { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+          },
+          animation: {
+            flicker: 'flicker 4s linear infinite',
+            fadeUp:  'fadeUp 0.7s ease-out both',
+            scrollX: 'scrollX 35s linear infinite',
+          },
+        },
+      },
+    };
+  </script>
+  <script>
+    // Mark JS-ready before first paint so reveal CSS can apply without flash.
+    document.documentElement.classList.add('js-ready');
+    // Lock scroll while preloader is visible.
+    document.documentElement.classList.add('is-loading');
+  </script>
+  <style id="loading-lock">
+    html.is-loading, html.is-loading body { overflow: hidden; }
+  </style>
+
+  <style>
+    html { -webkit-text-size-adjust: 100%; background-color: #0A0A0A; color-scheme: dark; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background-color: #0A0A0A;
+      color: #F5F5F1;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Anton', Impact, ui-sans-serif, sans-serif;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    [id] { scroll-margin-top: 6rem; }
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    /* Concrete / blueprint background */
+    .bg-concrete {
+      background-color: #0A0A0A;
+      background-image:
+        radial-gradient(at 18% 12%, rgba(225,29,72,0.10) 0, transparent 45%),
+        radial-gradient(at 82% 88%, rgba(249,115,22,0.08) 0, transparent 50%),
+        linear-gradient(180deg, #0A0A0A 0%, #0A0A0A 100%);
+    }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .bg-noise::before {
+      content: "";
+      position: absolute; inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    /* Hazard stripe divider */
+    .hazard-stripes {
+      background-image: repeating-linear-gradient(135deg,
+        #F97316 0 18px,
+        #0A0A0A 18px 36px);
+    }
+
+    /* Dotted leader for menu prices */
+    .leader { flex: 1 1 0%; border-bottom: 2px dotted rgba(245,245,241,0.18); transform: translateY(-6px); }
+
+    /* Dark map filter */
+    .dark-map iframe {
+      filter: invert(0.92) hue-rotate(195deg) saturate(0.75) brightness(1.05) contrast(0.95);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    :where(a, button, [role="tab"], input, textarea, select):focus-visible {
+      outline: 2px solid #F97316;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Hot tag pulse */
+    .pulse-dot::after {
+      content: ""; display: inline-block; vertical-align: middle;
+      width: 8px; height: 8px; margin-left: 8px;
+      border-radius: 999px; background: #E11D48;
+      box-shadow: 0 0 0 0 rgba(225,29,72,0.6);
+      animation: pulseRing 1.8s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0 rgba(225,29,72,0.6); }
+      80%  { box-shadow: 0 0 0 10px rgba(225,29,72,0); }
+      100% { box-shadow: 0 0 0 0 rgba(225,29,72,0); }
+    }
+
+    /* ----- Preloader ----- */
+    #preloader {
+      position: fixed; inset: 0; z-index: 100;
+      background: #050505;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    #preloader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    #preloader .pl-ring {
+      width: 88px; height: 88px; border-radius: 999px;
+      border: 3px solid rgba(245,245,241,0.08);
+      border-top-color: #E11D48;
+      border-right-color: #F97316;
+      animation: plSpin 1.1s linear infinite;
+    }
+    @keyframes plSpin { to { transform: rotate(360deg); } }
+    #preloader .pl-bar {
+      position: relative; overflow: hidden;
+      width: 220px; max-width: 60vw; height: 6px;
+      background: #161616; border-radius: 999px;
+    }
+    #preloader .pl-bar > span {
+      position: absolute; inset: 0; width: 35%;
+      background-image: repeating-linear-gradient(135deg,
+        #F97316 0 10px, #0A0A0A 10px 20px);
+      animation: plBar 1.4s ease-in-out infinite;
+    }
+    @keyframes plBar {
+      0%   { transform: translateX(-110%); }
+      55%  { transform: translateX(220%); }
+      100% { transform: translateX(220%); }
+    }
+    #preloader .pl-ember {
+      position: absolute; bottom: 6%; left: 50%;
+      width: 80vw; max-width: 720px; height: 240px; transform: translateX(-50%);
+      background: radial-gradient(50% 60% at 50% 100%, rgba(249,115,22,0.35) 0%, rgba(225,29,72,0.18) 30%, transparent 70%);
+      filter: blur(20px);
+      animation: plFlicker 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes plFlicker {
+      0%, 100% { opacity: 0.7; }
+      40%      { opacity: 1; }
+      60%      { opacity: 0.55; }
+    }
+
+    /* ----- Reveal on scroll (only when JS is ready) ----- */
+    .js-ready [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .js-ready [data-reveal="left"]  { transform: translateX(-26px); }
+    .js-ready [data-reveal="right"] { transform: translateX(26px); }
+    .js-ready [data-reveal].is-visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    .js-ready [data-reveal-delay="1"]  { transition-delay: 0.06s; }
+    .js-ready [data-reveal-delay="2"]  { transition-delay: 0.12s; }
+    .js-ready [data-reveal-delay="3"]  { transition-delay: 0.18s; }
+    .js-ready [data-reveal-delay="4"]  { transition-delay: 0.24s; }
+    .js-ready [data-reveal-delay="5"]  { transition-delay: 0.30s; }
+    .js-ready [data-reveal-delay="6"]  { transition-delay: 0.36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #preloader { display: none !important; }
+      .js-ready [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-ink-900 text-bone">
+
+  <!-- Preloader -->
+  <div id="preloader" role="status" aria-live="polite" aria-label="Strona się ładuje">
+    <div class="pl-ember" aria-hidden="true"></div>
+
+    <div class="relative flex flex-col items-center text-center">
+      <div class="relative">
+        <div class="pl-ring" aria-hidden="true"></div>
+        <span class="absolute inset-0 flex items-center justify-center font-display text-xl tracking-[0.2em] text-bone">PTG</span>
+      </div>
+
+      <p class="mt-7 font-display text-3xl sm:text-4xl tracking-[0.18em] text-bone">
+        Palimy <span class="text-blood-500 animate-flicker">piec</span>
+      </p>
+
+      <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-300">
+        Łódź // Piotrkowska 217
+      </p>
+
+      <div class="pl-bar mt-7" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-blood-500 focus:text-bone focus:px-4 focus:py-2 focus:rounded-lg">Przejdź do treści</a>
+
+  <!-- =========================== NAV =========================== -->
+  <header class="sticky top-0 z-50 bg-ink-900/80 backdrop-blur border-b border-ink-700">
+    <nav class="mx-auto max-w-7xl px-5 md:px-8 h-20 flex items-center justify-between" aria-label="Główna nawigacja">
+
+      <a href="#top" class="flex items-center gap-3 group" aria-label="Pizza Truck Garage — strona główna">
+        <span class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blood-500 text-bone shadow-neon shrink-0" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h13l3 4h2v6h-2a3 3 0 0 1-6 0H10a3 3 0 0 1-6 0H3V7Z"/>
+            <circle cx="7" cy="17" r="2"/>
+            <circle cx="16" cy="17" r="2"/>
+            <path d="M16 11h6"/>
+          </svg>
+          <span class="absolute -top-1 -right-1 inline-flex h-3 w-3 rounded-full bg-hazard-500 ring-2 ring-ink-900"></span>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display text-2xl tracking-wider text-bone">Pizza Truck</span>
+          <span class="flex items-center gap-2 mt-1 font-display text-base tracking-[0.18em] text-blood-500">
+            GARAGE
+            <span class="font-mono text-[10px] tracking-wider text-ink-300 normal-case">// PTR · 217</span>
+          </span>
+        </span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-10 text-sm font-semibold uppercase tracking-[0.18em] text-ink-200">
+        <li><a class="hover:text-blood-500 transition-colors" href="#o-nas">O nas</a></li>
+        <li><a class="hover:text-blood-500 transition-colors" href="#menu">Menu</a></li>
+        <li><a class="hover:text-blood-500 transition-colors" href="#pelne-menu">Pełne menu</a></li>
+        <li><a class="hover:text-blood-500 transition-colors" href="#lokalizacja">Lokalizacja</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href="tel:+48500217217"
+           class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-5 py-3 text-sm font-bold uppercase tracking-wider shadow-neon transition-colors">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/>
+          </svg>
+          Zadzwoń i zamów
+        </a>
+
+        <button id="navToggle" type="button"
+                class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-ink-600 text-bone hover:bg-ink-800 transition-colors"
+                aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="7"  x2="21" y2="7"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="17" x2="21" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-ink-700 bg-ink-900">
+      <ul class="px-5 py-4 space-y-1 font-semibold uppercase tracking-wider text-ink-200">
+        <li><a class="block rounded-lg px-3 py-3 hover:bg-ink-800" href="#o-nas">O nas</a></li>
+        <li><a class="block rounded-lg px-3 py-3 hover:bg-ink-800" href="#menu">Menu</a></li>
+        <li><a class="block rounded-lg px-3 py-3 hover:bg-ink-800" href="#pelne-menu">Pełne menu</a></li>
+        <li><a class="block rounded-lg px-3 py-3 hover:bg-ink-800" href="#lokalizacja">Lokalizacja</a></li>
+        <li class="pt-2">
+          <a href="tel:+48500217217" class="block text-center rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-5 py-3 font-bold">
+            Zadzwoń · 500 217 217
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- =========================== HERO =========================== -->
+    <section id="top" class="relative bg-concrete overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-40 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-noise pointer-events-none" aria-hidden="true"></div>
+
+      <!-- background flame photo -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1571066811602-716837d681de?auto=format&fit=crop&w=1800&q=80"
+             alt="" width="1800" height="1200" loading="eager"
+             class="h-full w-full object-cover opacity-25 mix-blend-screen" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/85 to-ink-900/60"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-7xl px-5 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32 grid lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-7 animate-fadeUp">
+          <span class="inline-flex items-center gap-3 rounded-full border border-blood-500/40 bg-blood-500/10 text-blood-400 px-4 py-1.5 font-mono text-xs tracking-[0.22em] uppercase">
+            <span class="h-1.5 w-1.5 rounded-full bg-blood-500 animate-flicker"></span>
+            Łódź // Piotrkowska 217 // Open Now
+          </span>
+
+          <h1 class="mt-7 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] text-bone">
+            Prawdziwa<br />
+            <span class="text-blood-500">Pizza Neapolitańska</span><br />
+            w garażowym stylu.
+          </h1>
+
+          <p class="mt-7 max-w-xl text-lg text-ink-200 leading-relaxed">
+            Wypiekana w piecu opalanym drewnem, na legendarnej <strong class="text-bone">Piotrkowskiej 217</strong> w Łodzi. Puszyste ciasto, charakterystyczne cętki, brudne dłonie — pizza z duszą.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            <a href="#menu"
+               class="inline-flex items-center gap-2 rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-7 py-4 text-sm font-bold uppercase tracking-wider shadow-neon transition-all hover:-translate-y-0.5">
+              Zobacz menu
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="tel:+48500217217"
+               class="inline-flex items-center gap-2 rounded-xl border border-ink-500 text-bone hover:border-hazard-500 hover:text-hazard-500 px-7 py-4 text-sm font-bold uppercase tracking-wider transition-colors">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/>
+              </svg>
+              Zadzwoń teraz
+            </a>
+          </div>
+
+          <dl class="mt-12 grid grid-cols-3 gap-6 max-w-lg border-t border-ink-700 pt-6">
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-300">Piec</dt>
+              <dd class="mt-2 font-display text-2xl text-bone">485°C</dd>
+              <dd class="text-xs text-ink-300">drewno bukowe</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-300">Czas wypieku</dt>
+              <dd class="mt-2 font-display text-2xl text-bone">90 sek</dd>
+              <dd class="text-xs text-ink-300">jak w Neapolu</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-300">Otwarte do</dt>
+              <dd class="mt-2 font-display text-2xl text-bone tabular">00:00</dd>
+              <dd class="text-xs text-ink-300">w Pt &amp; Sb</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="relative aspect-square rounded-3xl overflow-hidden border border-ink-700 shadow-plate">
+            <img
+              src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=1100&q=80"
+              alt="Pizza neapolitańska prosto z pieca opalanego drewnem"
+              width="1100" height="1100" loading="eager" fetchpriority="high"
+              class="h-full w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-ink-900/60 via-transparent to-transparent"></div>
+
+            <!-- Floating spec badge -->
+            <div class="absolute top-5 left-5 rounded-xl bg-ink-900/80 backdrop-blur border border-ink-600 px-4 py-2.5 font-mono text-xs">
+              <span class="block text-ink-300">ITEM_001</span>
+              <span class="block text-blood-400">Margherita · 36 zł</span>
+            </div>
+
+            <div class="absolute bottom-5 right-5 rounded-xl bg-hazard-500 text-ink-900 px-4 py-2.5 font-display text-sm tracking-wider shadow-neonHot">
+              Wood-Fired // 90s
+            </div>
+          </div>
+
+          <!-- License plate -->
+          <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 sm:left-auto sm:-right-4 sm:translate-x-0 rounded-lg border-2 border-ink-200 bg-bone text-ink-900 px-5 py-2 shadow-plate">
+            <span class="font-display text-2xl tracking-[0.18em]">PTG · 217</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hazard divider -->
+      <div class="relative h-3 hazard-stripes" aria-hidden="true"></div>
+    </section>
+
+    <!-- =========================== MARQUEE / TICKER =========================== -->
+    <section class="relative overflow-hidden border-b border-ink-700 bg-ink-850 py-4" aria-hidden="true">
+      <div class="flex w-max gap-12 animate-scrollX whitespace-nowrap font-display text-xl tracking-[0.18em] text-ink-300">
+        <span>★ Wood-Fired Pizza</span><span class="text-blood-500">// Piotrkowska 217</span>
+        <span>★ 485°C · 90 sekund</span><span class="text-hazard-500">// Open till midnight Fri-Sat</span>
+        <span>★ Craft Beer on Tap</span><span class="text-blood-500">// Since 2014</span>
+        <span>★ Wood-Fired Pizza</span><span class="text-hazard-500">// Piotrkowska 217</span>
+        <span>★ 485°C · 90 sekund</span><span class="text-blood-500">// Open till midnight Fri-Sat</span>
+        <span>★ Craft Beer on Tap</span><span class="text-hazard-500">// Since 2014</span>
+      </div>
+    </section>
+
+    <!-- =========================== O NAS =========================== -->
+    <section id="o-nas" class="relative py-24 md:py-32 bg-ink-900">
+      <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-12 gap-14 items-center">
+
+        <div class="lg:col-span-5 order-2 lg:order-1" data-reveal="left">
+          <div class="relative">
+            <div class="aspect-[4/5] rounded-3xl overflow-hidden border border-ink-700 shadow-plate">
+              <img
+                src="https://images.unsplash.com/photo-1542528180-a1208c5169a5?auto=format&fit=crop&w=1100&q=80"
+                alt="Surowe, industrialne wnętrze pizzerii z otwartą kuchnią i piecem"
+                width="1100" height="1400" loading="lazy"
+                class="h-full w-full object-cover" />
+            </div>
+            <div class="absolute -bottom-6 -left-4 sm:-left-6 rounded-2xl bg-blood-500 text-bone px-6 py-4 shadow-neon max-w-[240px]">
+              <p class="font-display text-3xl tracking-wider">Since 2014</p>
+              <p class="font-mono text-[11px] uppercase tracking-wider text-bone/80 mt-1">Truck → Garage → Łódź</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 order-1 lg:order-2" data-reveal="right">
+          <span class="font-mono text-xs uppercase tracking-[0.28em] text-blood-500">// historia</span>
+          <h2 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1] text-bone">
+            Z food trucka <br />
+            <span class="text-hazard-500">do garażu pełnego ognia.</span>
+          </h2>
+
+          <p class="mt-7 text-lg text-ink-200 leading-relaxed max-w-2xl">
+            Zaczynaliśmy od starego pickupa i jednego pieca pożyczonego od kumpla z Neapolu. Sprzedawaliśmy pizzę na łódzkich festiwalach, koncertach i parkingach przed klubami. Kierowca z brudnymi rękami, kucharz z tatuażami i obsesja na punkcie idealnego ciasta — to wystarczyło, żeby kolejka rosła z miesiąca na miesiąc.
+          </p>
+
+          <p class="mt-5 text-lg text-ink-200 leading-relaxed max-w-2xl">
+            Dziś mamy swój kawałek <strong class="text-bone">Piotrkowskiej 217</strong> — surowy, betonowy lokal z piecem na środku, winylem w głośnikach i ścianami wytapetowanymi naklejkami zespołów. Klimat z trasy koncertowej, smak prosto z Neapolu.
+          </p>
+
+          <p class="mt-5 text-lg text-ink-200 leading-relaxed max-w-2xl">
+            Ciasto fermentuje u nas <strong class="text-bone">48 godzin</strong>, mąka jest z Caputo, sos z San Marzano, a piec rozgrzany do <strong class="text-bone">485°C</strong>. Efekt? Puszysty cornicione z charakterystycznymi cętkami leoparda i lekkie, strawne podpłomyki, których nie da się zapomnieć.
+          </p>
+
+          <div class="mt-10 grid sm:grid-cols-3 gap-4">
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 px-5 py-5">
+              <p class="font-display text-4xl text-hazard-500">48h</p>
+              <p class="mt-2 font-mono text-[11px] uppercase tracking-wider text-ink-300">Fermentacja ciasta</p>
+            </div>
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 px-5 py-5">
+              <p class="font-display text-4xl text-hazard-500">00°00</p>
+              <p class="mt-2 font-mono text-[11px] uppercase tracking-wider text-ink-300">485°C w piecu</p>
+            </div>
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 px-5 py-5">
+              <p class="font-display text-4xl text-hazard-500">217</p>
+              <p class="mt-2 font-mono text-[11px] uppercase tracking-wider text-ink-300">Adres na Piotrkowskiej</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== MENU =========================== -->
+    <section id="menu" class="relative py-24 md:py-32 bg-ink-850 border-y border-ink-700 overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative bg-noise absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-7xl px-5 md:px-8">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-xs uppercase tracking-[0.28em] text-blood-500">// karta · v.2026</span>
+            <h2 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1] text-bone">
+              Tablica<br />
+              <span class="text-hazard-500">w warsztacie.</span>
+            </h2>
+            <p class="mt-5 text-lg text-ink-200 max-w-xl">
+              Trzy sekcje, jeden cel: nie wyjść głodnym. Pizza wprost z pieca, kraftowe piwo prosto z kranu. Bez kompromisów, bez ananasa.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-wider">
+            <span class="inline-flex items-center gap-2 rounded-full border border-blood-500/40 bg-blood-500/10 text-blood-400 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-blood-500"></span> ostre
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-hazard-500/40 bg-hazard-500/10 text-hazard-500 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-hazard-500"></span> nowość
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-ink-500 bg-ink-800 text-ink-200 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-ink-200"></span> wege
+            </span>
+          </div>
+        </div>
+
+        <!-- KLASYKI -->
+        <div class="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <header class="lg:col-span-3">
+            <span class="font-mono text-xs uppercase tracking-[0.28em] text-ink-300">01</span>
+            <h3 class="mt-3 font-display text-3xl text-bone leading-none">Klasyki</h3>
+            <p class="mt-3 text-sm text-ink-300">Tradycyjne neapolitanki. Krótka lista, każda pozycja sprawdzona setki razy.</p>
+          </header>
+
+          <ul class="lg:col-span-9 grid sm:grid-cols-2 gap-5">
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Margherita</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">36 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Sos z pomidorów San Marzano, mozzarella fior di latte, świeża bazylia, oliwa extra vergine.</p>
+              <p class="mt-3 font-mono text-[10px] uppercase tracking-wider text-ink-400">// klasyk DOC</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Marinara</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">30 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Pomidory San Marzano, czosnek, oregano, oliwa. Bez sera — czysta esencja Neapolu.</p>
+              <p class="mt-3 font-mono text-[10px] uppercase tracking-wider text-ink-400">// wege</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Prosciutto e Funghi</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">44 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Szynka parmeńska, świeże pieczarki, mozzarella fior di latte, oregano.</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Capricciosa</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">46 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Szynka, pieczarki, karczochy, oliwki czarne, mozzarella, sos pomidorowy.</p>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- HAZARD SEPARATOR -->
+        <div class="my-16 flex items-center gap-4" aria-hidden="true">
+          <span class="font-mono text-xs uppercase tracking-[0.28em] text-ink-300 whitespace-nowrap">// danger zone</span>
+          <span class="h-3 flex-1 hazard-stripes rounded-sm"></span>
+        </div>
+
+        <!-- GARAŻOWE SPECJAŁY -->
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <header class="lg:col-span-3">
+            <span class="font-mono text-xs uppercase tracking-[0.28em] text-ink-300">02</span>
+            <h3 class="mt-3 font-display text-3xl text-bone leading-none">Garażowe<br />Specjały</h3>
+            <p class="mt-3 text-sm text-ink-300">Autorskie kompozycje. Mocne, ostre, bez kompromisu. Tylko dla odważnych.</p>
+          </header>
+
+          <ul class="lg:col-span-9 grid sm:grid-cols-2 gap-5">
+
+            <li class="group rounded-2xl border border-blood-500/40 hover:border-blood-500 bg-ink-900 p-6 transition-all hover:shadow-neon relative overflow-hidden">
+              <span class="absolute top-0 right-0 bg-blood-500 text-bone font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-bl-lg">Ostre</span>
+              <div class="flex items-baseline gap-3 pr-16">
+                <h4 class="font-display text-2xl text-bone leading-none pulse-dot">Diavola Garage</h4>
+              </div>
+              <div class="flex items-baseline gap-3 mt-2">
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">48 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Salami piccante, jalapeño, mozzarella, miód lawendowy, świeża bazylia. Ognista i słodka.</p>
+            </li>
+
+            <li class="group rounded-2xl border border-blood-500/40 hover:border-blood-500 bg-ink-900 p-6 transition-all hover:shadow-neon relative overflow-hidden">
+              <span class="absolute top-0 right-0 bg-blood-500 text-bone font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-bl-lg">Ostre · Nowość</span>
+              <div class="flex items-baseline gap-3 pr-24">
+                <h4 class="font-display text-2xl text-bone leading-none">'Nduja Bomb</h4>
+              </div>
+              <div class="flex items-baseline gap-3 mt-2">
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">54 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Kalabryjska 'nduja, gorgonzola dolce, czerwona cebula, mozzarella, oliwa chili. Eksplozja smaku.</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-hazard-500/60 bg-ink-900 p-6 transition-all hover:shadow-neonHot relative overflow-hidden">
+              <span class="absolute top-0 right-0 bg-hazard-500 text-ink-900 font-mono text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-bl-lg">Polecane</span>
+              <div class="flex items-baseline gap-3 pr-20">
+                <h4 class="font-display text-2xl text-bone leading-none">Mechanik</h4>
+              </div>
+              <div class="flex items-baseline gap-3 mt-2">
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">49 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Włoska kiełbasa fennel, brokuł blanszowany, czosnek, mozzarella, parmezan, chili olej.</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Forrest Gump</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">50 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Boczek smażony na chrupko, gorgonzola dolce, rukola, orzechy włoskie, redukcja balsamiczna.</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-hazard-500/60 bg-ink-900 p-6 transition-all hover:shadow-neonHot relative overflow-hidden">
+              <span class="absolute top-0 right-0 bg-hazard-500 text-ink-900 font-mono text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-bl-lg">Nowość</span>
+              <div class="flex items-baseline gap-3 pr-16">
+                <h4 class="font-display text-2xl text-bone leading-none">Bianca Tartufo</h4>
+              </div>
+              <div class="flex items-baseline gap-3 mt-2">
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">58 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Bez sosu pomidorowego, mozzarella, mascarpone, świeża rukola, olej truflowy, parmezan 24m.</p>
+              <p class="mt-3 font-mono text-[10px] uppercase tracking-wider text-ink-400">// wege</p>
+            </li>
+
+            <li class="group rounded-2xl border border-ink-700 hover:border-blood-500/60 bg-ink-900 p-6 transition-all hover:shadow-neon">
+              <div class="flex items-baseline gap-3">
+                <h4 class="font-display text-2xl text-bone leading-none">Tonno e Cipolla</h4>
+                <span class="leader"></span>
+                <span class="font-mono text-blood-400 text-base tabular">45 zł</span>
+              </div>
+              <p class="mt-3 text-sm text-ink-200 leading-relaxed">Tuńczyk w oliwie, czerwona cebula marynowana, kapary, mozzarella, świeży oregano.</p>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- NAPOJE -->
+        <div class="mt-20 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <header class="lg:col-span-3">
+            <span class="font-mono text-xs uppercase tracking-[0.28em] text-ink-300">03</span>
+            <h3 class="mt-3 font-display text-3xl text-bone leading-none">Napoje</h3>
+            <p class="mt-3 text-sm text-ink-300">Kraftowe piwo z lokalnych browarów, klasyki, świeże napary.</p>
+          </header>
+
+          <div class="lg:col-span-9 grid md:grid-cols-3 gap-5">
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-900 p-6 hover:border-hazard-500/60 hover:shadow-neonHot transition-all">
+              <span class="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-hazard-500/10 text-hazard-500 mb-5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 11h1a2 2 0 0 1 0 4h-1"/>
+                  <path d="M3 7h14v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7Z"/>
+                  <path d="M7 4v3M11 4v3M14 4v3"/>
+                </svg>
+              </span>
+              <h4 class="font-display text-2xl text-bone">Kraftowe piwo</h4>
+              <p class="mt-2 text-sm text-ink-200 leading-relaxed">5 kranów z rotacją: Pinta, Browar Stu Mostów, Maryensztadt. Lokalnie i sezonowo.</p>
+              <p class="mt-4 font-mono text-blood-400 tabular">od 14 zł / 0,3 l</p>
+            </div>
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-900 p-6 hover:border-blood-500/60 hover:shadow-neon transition-all">
+              <span class="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-blood-500/10 text-blood-400 mb-5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 2h8M12 2v4"/>
+                  <path d="M7 6h10l-1 14a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2L7 6Z"/>
+                  <path d="M8 12h8"/>
+                </svg>
+              </span>
+              <h4 class="font-display text-2xl text-bone">Napary &amp; Spritz</h4>
+              <p class="mt-2 text-sm text-ink-200 leading-relaxed">Aperol Spritz, Hugo, Negroni Sbagliato. W lecie domowe lemoniady z bazylią i imbirem.</p>
+              <p class="mt-4 font-mono text-blood-400 tabular">od 16 zł</p>
+            </div>
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-900 p-6 hover:border-ink-400 transition-all">
+              <span class="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-ink-700 text-ink-200 mb-5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="6" y="3" width="12" height="18" rx="2"/>
+                  <path d="M9 8h6M9 12h6M9 16h3"/>
+                </svg>
+              </span>
+              <h4 class="font-display text-2xl text-bone">Klasyki</h4>
+              <p class="mt-2 text-sm text-ink-200 leading-relaxed">Coca-Cola, Sprite, Fanta, woda Lurisia, sok pomarańczowy świeży, San Pellegrino.</p>
+              <p class="mt-4 font-mono text-blood-400 tabular">od 8 zł</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Footer CTA in menu -->
+        <div class="mt-16 rounded-3xl border border-ink-700 bg-ink-900 p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6" data-reveal>
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-blood-500">// karta · wybór szefa</p>
+            <p class="mt-3 font-display text-3xl text-bone">To tylko top picks. Pełna karta liczy ponad 80 pozycji.</p>
+            <p class="mt-2 text-ink-200 text-sm">Antipasti, calzone, sałatki, desery, lokalne piwa kraftowe, włoskie wina i autorskie drinki — sprawdź pełne menu.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="#pelne-menu"
+               class="inline-flex items-center justify-center gap-2 rounded-xl bg-hazard-500 hover:bg-hazard-600 text-ink-900 px-7 py-4 text-sm font-bold uppercase tracking-wider shadow-neonHot transition-all whitespace-nowrap">
+              Pełne menu
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+              </svg>
+            </a>
+            <a href="tel:+48500217217"
+               class="inline-flex items-center justify-center gap-2 rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-7 py-4 text-sm font-bold uppercase tracking-wider shadow-neon transition-all whitespace-nowrap">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/>
+              </svg>
+              Zadzwoń
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== PEŁNE MENU =========================== -->
+    <section id="pelne-menu" class="relative py-24 md:py-32 bg-ink-900 border-t border-ink-700 overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-15 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-x-0 top-0 h-3 hazard-stripes" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-7xl px-5 md:px-8">
+
+        <header class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
+          <div class="max-w-2xl">
+            <span class="font-mono text-xs uppercase tracking-[0.28em] text-blood-500">// pełna karta // edycja 2026</span>
+            <h2 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1] text-bone">
+              Pełne<br />
+              <span class="text-hazard-500">Menu.</span>
+            </h2>
+            <p class="mt-5 text-lg text-ink-200">
+              Wszystko, co serwujemy na Piotrkowskiej 217. Pizza, antipasti, drinki i wina. Karta sezonowa — dania mogą się zmieniać.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-[0.22em]">
+            <span class="inline-flex items-center gap-2 rounded-full border border-blood-500/40 bg-blood-500/10 text-blood-400 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-blood-500"></span> ostre
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-hazard-500/40 bg-hazard-500/10 text-hazard-500 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-hazard-500"></span> polecane
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-ink-500 bg-ink-800 text-ink-200 px-3 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-ink-200"></span> wege
+            </span>
+          </div>
+        </header>
+
+        <div class="mt-14 rounded-3xl border border-ink-700 bg-ink-850 p-6 sm:p-10 md:p-14 shadow-plate relative overflow-hidden" data-reveal data-reveal-delay="1">
+          <div class="absolute inset-0 bg-noise pointer-events-none" aria-hidden="true"></div>
+
+          <div class="relative grid md:grid-cols-2 gap-x-14 gap-y-14">
+
+            <!-- ANTIPASTI -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Antipasti</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// przystawki</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Focaccia z rozmarynem <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">18 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Domowy chleb z pieca, oliwa, świeży rozmaryn, sól morska</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Bruschetta Pomodoro <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">22 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Pieczywo, pomidory koktajlowe, czosnek, bazylia, oliwa extra vergine</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Bruschetta z 'ndują <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">26 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Pieczywo, pasta z kalabryjskiej 'ndui, ricotta, miód</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Arancini z ragù</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">24 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">3 sycylijskie kulki ryżowe nadziewane ragù, sos pomidorowy</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Crocchette di patate <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">19 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Domowe krokiety ziemniaczane, mozzarella w środku, aioli</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Burrata z pomidorami ★ <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">38 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Świeża burrata 125 g, pomidory koktajlowe, pesto, focaccia</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Tagliere — deska serów i wędlin</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">65 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Prosciutto crudo, mortadella, salami, 3 sery, oliwki, grissini</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- SAŁATKI -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Insalate</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// sałatki</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Caprese di Bufala <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">32 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mozzarella di bufala, pomidory, bazylia, oliwa, balsamico</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Caesar z kurczakiem</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">34 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Sałata rzymska, kurczak grillowany, parmezan, grzanki, sos Caesar</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Rukola z parmezanem <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">28 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Świeża rukola, parmezan 24m, pomidorki, balsamico, orzechy włoskie</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Sałatka z tuńczykiem</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">32 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mix sałat, tuńczyk, jajko, oliwki, ogórek, czerwona cebula</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Burrata salad ★ <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">39 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Burrata, marynowane buraki, rukola, orzechy, pesto bazyliowe</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- PIZZA CLASSICA -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Pizza Classica</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// rosse</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Margherita <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">36 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">San Marzano, mozzarella fior di latte, bazylia, oliwa</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Margherita DOC ★ <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">44 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Z mozzarellą di bufala campana DOP — klasyk premium</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Marinara <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">30 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Bez sera. Pomidory San Marzano, czosnek, oregano, oliwa</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Napoletana</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">42 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Anchois, kapary, oliwki czarne, mozzarella, oregano</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Diavola <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">42 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Salami piccante, mozzarella, oliwa chili, oregano</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Prosciutto e Funghi</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">44 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Szynka, świeże pieczarki, mozzarella, oregano</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Capricciosa</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">46 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Szynka, pieczarki, karczochy, oliwki, mozzarella, sos pomidorowy</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Quattro Stagioni</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">48 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Cztery pory roku w jednej pizzy: szynka, grzyby, karczochy, oliwki</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Tonno e Cipolla</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">45 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Tuńczyk, czerwona cebula, kapary, mozzarella, oregano</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Salsiccia e Friarielli</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">48 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Włoska kiełbasa fennel, brokuł rzymski, czosnek, chili</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- PIZZA BIANCA -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Pizza Bianca</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// bez sosu</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Bianca Tartufo ★ <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">58 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mozzarella, mascarpone, rukola, olej truflowy, parmezan 24m</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Quattro Formaggi <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">48 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mozzarella, gorgonzola, parmezan, ser kozi, miód</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Mortadella &amp; Pistacchio ★</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">54 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mortadella IGP, pesto pistacjowe, burrata, świeże pistacje</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Prosciutto Crudo</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">54 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mozzarella, prosciutto crudo, rukola, parmezan, pomidorki</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Funghi Misti <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">46 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Mix grzybów leśnych, mozzarella, czosnek, tymianek, oliwa</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- GARAGE SPECIALS -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-hazard-500/80">
+                <h3 class="font-display text-3xl text-bone leading-none">Garage Specials</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-hazard-500">// autorskie</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Diavola Garage <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">48 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Salami piccante, jalapeño, mozzarella, miód lawendowy, bazylia</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">'Nduja Bomb ★ <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">54 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Kalabryjska 'nduja, gorgonzola dolce, czerwona cebula, oliwa chili</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Mechanik ★</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">49 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Kiełbasa fennel, brokuł, czosnek, mozzarella, parmezan, chili olej</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Forrest Gump</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">50 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Boczek chrupiący, gorgonzola dolce, rukola, orzechy, balsamico</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Polish Punk</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">47 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Kabanos, ogórek kiszony, czerwona cebula, mozzarella, musztarda</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Mexican Truck <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">49 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Wołowina, fasola czerwona, kukurydza, jalapeño, sos chipotle</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- CALZONE -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Calzone</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// pizza zamknięta</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Calzone Classico</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">42 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Szynka, pieczarki, ricotta, mozzarella, sos pomidorowy obok</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Calzone Diavolo <span class="text-blood-400 text-xs">· ostre</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">46 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Salami piccante, ricotta, mozzarella, oliwa chili, oregano</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Calzone Vegetariano <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">40 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Bakłażan, cukinia, papryka, ricotta, mozzarella, bazylia</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DESERY -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Dolci</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// desery</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Tiramisu ★ <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">22 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Klasyk z mascarpone, espresso i kakao. Robione codziennie</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Cannoli Siciliani <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">18 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Chrupiące rurki z ricottą, pistacjami i kandyzowanymi owocami</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Panna Cotta <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">20 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Delikatny krem śmietankowy, sos owocowy sezonowy</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Brownie z lodami</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">24 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Domowe brownie, gałka lodów waniliowych, sos czekoladowy</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Gelato artigianale — 3 gałki <span class="text-ink-300 text-xs">· wege</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">18 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Smaki sezonowe: wanilia, czekolada, pistacja, słony karmel</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- NAPOJE BEZALKO -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Bibite</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// bezalkoholowe</span>
+              </header>
+              <ul class="mt-6 space-y-2.5">
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Coca-Cola / Sprite / Fanta 0,33 l</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">9 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">San Pellegrino — Aranciata / Limonata</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">12 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Woda Lurisia gaz. / nieg. 0,5 l</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">10 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Sok pomarańczowy świeży</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">14 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Lemoniada domowa</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">16 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Iced Tea brzoskwinia / cytryna</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">12 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Tonic Schweppes</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">10 zł</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- KAWA -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Caffè</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// kawa</span>
+              </header>
+              <ul class="mt-6 space-y-2.5">
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Espresso</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">8 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Doppio</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">12 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Americano</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">11 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Cappuccino</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">12 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Caffè Latte</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">14 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Espresso Tonic ★</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">15 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Herbata sypana — wybór 5 smaków</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">12 zł</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- PIWO -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-hazard-500/80">
+                <h3 class="font-display text-3xl text-bone leading-none">Birra</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-hazard-500">// piwo · 5 kranów</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Pinta — Atak Chmielu (IPA) ★</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">16 zł / 0,3 l</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Kultowa polska IPA, mocno chmielowa, cytrusowa</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Pinta — Pszeniczniak</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">14 zł / 0,3 l</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Lekkie pszeniczne, banan i goździk</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Browar Stu Mostów — Salamander Lager</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">17 zł / 0,3 l</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Wrocławski lager premium, leniwie fermentowany</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Maryensztadt — Sesyjne</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">15 zł / 0,3 l</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Lekki APA na sesję, łatwy i orzeźwiający</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Piwo dnia — kran obrotowy</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">od 14 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Zapytaj kelnera — codziennie coś z lokalnych browarów</p>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Peroni / Heineken / Corona (butelka)</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">14 zł</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- WINA -->
+            <section data-reveal>
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Vino</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// karta win</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Chianti DOCG ★ <span class="text-ink-300 text-xs">· czerwone</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">26 / 109 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Toskania. Lampka 150 ml / butelka 0,75 l</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Montepulciano d'Abruzzo <span class="text-ink-300 text-xs">· czerwone</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">22 / 89 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Wytrawne, owocowe, dobrze pasuje do pizzy z mięsem</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Primitivo di Manduria <span class="text-ink-300 text-xs">· czerwone</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">28 / 119 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Apulia. Mocne, ciemnoowocowe, korzenne nuty</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Pinot Grigio <span class="text-ink-300 text-xs">· białe</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">24 / 99 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Wytrawne, świeże, mineralne — do ryb i salatek</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Prosecco DOC ★ <span class="text-ink-300 text-xs">· musujące</span></h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">26 / 109 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Veneto. Klasyczne wytrawne musujące do aperitivo</p>
+                </li>
+              </ul>
+            </section>
+
+            <!-- DRINKI -->
+            <section data-reveal data-reveal-delay="1">
+              <header class="flex items-end justify-between gap-4 pb-3 border-b-2 border-blood-500/70">
+                <h3 class="font-display text-3xl text-bone leading-none">Cocktails</h3>
+                <span class="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-300">// drinki &amp; shoty</span>
+              </header>
+              <ul class="mt-6 space-y-5">
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Aperol Spritz ★</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">24 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Aperol, Prosecco, woda gazowana, pomarańcza</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Hugo</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">22 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Prosecco, syrop z czarnego bzu, mięta, limonka</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Negroni Sbagliato ★</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">26 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Campari, Vermouth Rosso, Prosecco, skórka pomarańczowa</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Negroni</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">28 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Gin, Campari, Vermouth Rosso — klasyk gorzkawy</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Old Fashioned</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">32 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Bourbon, cukier trzcinowy, bittery, skórka pomarańczowa</p>
+                </li>
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <h4 class="font-semibold text-bone">Espresso Martini</h4>
+                    <span class="leader"></span>
+                    <span class="font-mono text-blood-400 tabular shrink-0">30 zł</span>
+                  </div>
+                  <p class="mt-1 text-sm text-ink-300">Wódka, likier kawowy, świeże espresso, cukier</p>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Limoncello / Grappa (shot 40 ml)</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">14 / 18 zł</span>
+                </li>
+                <li class="flex items-baseline gap-3">
+                  <h4 class="font-semibold text-bone">Mocktail bezalkoholowy</h4>
+                  <span class="leader"></span>
+                  <span class="font-mono text-blood-400 tabular shrink-0">19 zł</span>
+                </li>
+              </ul>
+            </section>
+
+          </div>
+
+          <!-- Footer info -->
+          <footer class="relative mt-14 pt-8 border-t border-ink-700 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-300 space-y-1">
+              <p>// ceny w PLN brutto · zawierają VAT</p>
+              <p>// karta sezonowa — dania mogą się zmieniać</p>
+              <p>// alergie? zapytaj kelnera, dostosujemy</p>
+            </div>
+            <a href="tel:+48500217217"
+               class="inline-flex items-center justify-center gap-2 rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-7 py-4 text-sm font-bold uppercase tracking-wider shadow-neon transition-all whitespace-nowrap">
+              Zamów telefonicznie · 500 217 217
+            </a>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== LOKALIZACJA =========================== -->
+    <section id="lokalizacja" class="relative py-24 md:py-32 bg-ink-900 overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-12 gap-12">
+
+        <div class="lg:col-span-5" data-reveal="left">
+          <span class="font-mono text-xs uppercase tracking-[0.28em] text-blood-500">// znajdź nas</span>
+          <h2 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1] text-bone">
+            Łódź,<br />
+            <span class="text-hazard-500">Piotrkowska 217.</span>
+          </h2>
+          <p class="mt-6 text-lg text-ink-200 max-w-md leading-relaxed">
+            Surowy, betonowy lokal z piecem na środku i basowymi wibracjami zza ściany. Wejdź — czujesz węgiel drzewny? To my.
+          </p>
+
+          <div class="mt-10 space-y-1">
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 p-5 flex items-start gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blood-500/10 text-blood-400 shrink-0">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </span>
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-300">Adres</p>
+                <p class="mt-1 font-display text-xl text-bone">ul. Piotrkowska 217</p>
+                <p class="text-sm text-ink-200">90-451 Łódź · Polska</p>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 p-5 flex items-start gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-hazard-500/10 text-hazard-500 shrink-0">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-300">Godziny otwarcia</p>
+                <ul class="mt-2 space-y-0.5 text-sm">
+                  <li class="flex justify-between gap-6">
+                    <span class="text-ink-200">Niedziela – Czwartek</span>
+                    <span class="font-mono text-bone tabular">12:00 — 22:00</span>
+                  </li>
+                  <li class="flex justify-between gap-6">
+                    <span class="text-ink-200">Piątek – Sobota</span>
+                    <span class="font-mono text-hazard-500 tabular">12:00 — 00:00</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-ink-700 bg-ink-850 p-5 flex items-start gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blood-500/10 text-blood-400 shrink-0">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-300">Zamówienia</p>
+                <a href="tel:+48500217217" class="mt-1 block font-display text-xl text-bone hover:text-blood-400 transition-colors tabular">500 217 217</a>
+                <a href="mailto:siema@pizzatruckgarage.pl" class="block text-sm text-ink-200 hover:text-bone">siema@pizzatruckgarage.pl</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href="tel:+48500217217"
+               class="inline-flex items-center gap-2 rounded-xl bg-blood-500 hover:bg-blood-600 text-bone px-7 py-3.5 text-sm font-bold uppercase tracking-wider shadow-neon transition-colors">
+              Zadzwoń teraz
+            </a>
+            <a href="https://www.google.com/maps?q=Piotrkowska+217,+%C5%81%C3%B3d%C5%BA" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 rounded-xl border border-ink-500 text-bone hover:border-hazard-500 hover:text-hazard-500 px-7 py-3.5 text-sm font-bold uppercase tracking-wider transition-colors">
+              Trasa w Google Maps
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7" data-reveal="right">
+          <div class="dark-map relative rounded-3xl overflow-hidden border border-ink-700 shadow-plate aspect-[4/3] lg:aspect-[5/6] xl:aspect-[5/5]">
+            <iframe
+              title="Mapa lokalizacji Pizza Truck Garage, ul. Piotrkowska 217, Łódź"
+              src="https://www.google.com/maps?q=Piotrkowska+217,+%C5%81%C3%B3d%C5%BA&output=embed"
+              width="600" height="600"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              class="absolute inset-0 w-full h-full border-0"></iframe>
+
+            <div class="absolute top-5 left-5 rounded-xl bg-ink-900/90 backdrop-blur border border-ink-600 px-4 py-3 font-mono text-xs">
+              <span class="block text-ink-300">// GPS</span>
+              <span class="block text-bone mt-1 tabular">51.7470 N · 19.4525 E</span>
+            </div>
+            <div class="absolute bottom-5 right-5 rounded-lg border-2 border-ink-200 bg-bone text-ink-900 px-3 py-1.5 shadow-plate">
+              <span class="font-display text-base tracking-[0.18em]">PTG · 217</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hazard divider -->
+      <div class="relative h-3 hazard-stripes mt-24" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <!-- =========================== FOOTER =========================== -->
+  <footer class="bg-ink-950 border-t border-ink-700">
+    <div class="mx-auto max-w-7xl px-5 md:px-8 py-14 grid md:grid-cols-12 gap-10">
+
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <span class="relative inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blood-500 text-bone shrink-0" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7h13l3 4h2v6h-2a3 3 0 0 1-6 0H10a3 3 0 0 1-6 0H3V7Z"/>
+              <circle cx="7" cy="17" r="2"/>
+              <circle cx="16" cy="17" r="2"/>
+            </svg>
+          </span>
+          <div class="leading-none">
+            <p class="font-display text-xl tracking-wider text-bone">Pizza Truck Garage</p>
+            <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-300 mt-1">// Łódź · Piotrkowska 217</p>
+          </div>
+        </div>
+        <p class="mt-5 text-sm text-ink-300 max-w-sm leading-relaxed">
+          Prawdziwa pizza neapolitańska wypiekana w piecu opalanym drewnem. Surowy garaż, rockowa muzyka, dobre piwo. Wpadaj — nie zawiedziesz się.
+        </p>
+
+        <div class="mt-6 flex items-center gap-3">
+          <a href="#" aria-label="Pizza Truck Garage na Facebooku"
+             class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-ink-700 bg-ink-850 hover:border-blood-500 hover:text-blood-400 text-ink-200 transition-colors">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Pizza Truck Garage na Instagramie"
+             class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-ink-700 bg-ink-850 hover:border-hazard-500 hover:text-hazard-500 text-ink-200 transition-colors">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-blood-500">// nawigacja</p>
+        <ul class="mt-4 space-y-2 text-sm text-ink-200">
+          <li><a class="hover:text-blood-400 transition-colors" href="#o-nas">O nas</a></li>
+          <li><a class="hover:text-blood-400 transition-colors" href="#menu">Menu</a></li>
+          <li><a class="hover:text-blood-400 transition-colors" href="#lokalizacja">Lokalizacja</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-blood-500">// kontakt</p>
+        <ul class="mt-4 space-y-2 text-sm text-ink-200">
+          <li>ul. Piotrkowska 217, Łódź</li>
+          <li><a href="tel:+48500217217" class="hover:text-blood-400 tabular">500 217 217</a></li>
+          <li><a href="mailto:siema@pizzatruckgarage.pl" class="hover:text-blood-400">siema@pizzatruckgarage.pl</a></li>
+          <li class="tabular">Nd–Cz 12:00–22:00 · Pt–Sb 12:00–00:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hazard-stripes h-2" aria-hidden="true"></div>
+
+    <div class="bg-ink-950">
+      <div class="mx-auto max-w-7xl px-5 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+        <p>&copy; <span class="tabular" id="year">2026</span> Pizza Truck Garage // All rights reserved</p>
+        <p>Hand-thrown. Wood-fired. Łódź since 2014.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('navToggle');
+      const menu = document.getElementById('mobileMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        const open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Otwórz menu');
+        });
+      });
+    })();
+
+    (function () {
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+
+    // Preloader: hide once page is loaded, with a small minimum display time
+    (function () {
+      const pre = document.getElementById('preloader');
+      if (!pre) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        pre.remove();
+        document.documentElement.classList.remove('is-loading');
+        return;
+      }
+      const start = performance.now();
+      const minMs = 750;
+      function done() {
+        const wait = Math.max(0, minMs - (performance.now() - start));
+        setTimeout(function () {
+          pre.classList.add('is-hidden');
+          document.documentElement.classList.remove('is-loading');
+          setTimeout(function () { pre.remove(); }, 800);
+        }, wait);
+      }
+      if (document.readyState === 'complete') done();
+      else window.addEventListener('load', done, { once: true });
+      // Safety net — never let the preloader linger more than 4 s
+      setTimeout(done, 4000);
+    })();
+
+    // Scroll-reveal via IntersectionObserver
+    (function () {
+      const targets = document.querySelectorAll('[data-reveal]');
+      if (!targets.length || typeof IntersectionObserver === 'undefined') {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
